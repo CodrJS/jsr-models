@@ -1,6 +1,6 @@
 {
-  "name": "@codr/ts-template",
-  "version": "0.1.2",
+  "name": "@codr/models",
+  "version": "0.1.3",
   "exports": "./mod.ts",
   "fmt": {
     "lineWidth": 80,
