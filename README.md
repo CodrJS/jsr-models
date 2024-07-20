@@ -1,30 +1,61 @@
-# @codr/ts-jsr-template
+# @codr/models
 
 [![JSR Scope](https://jsr.io/badges/@codr)](https://jsr.io/@codr)
-[![JSR](https://jsr.io/badges/@codr/<package>)](https://jsr.io/@codr/<package>)
-[![JSR Score](https://jsr.io/badges/@codr/<package>/score)](https://jsr.io/@codr/<package>)
-[![CodeQL](https://github.com/CodrJS/ts-jsr-template/actions/workflows/codeql.yml/badge.svg)](https://github.com/CodrJS/ts-jsr-template/actions/workflows/codeql.yml)
+[![JSR](https://jsr.io/badges/@codr/models)](https://jsr.io/@codr/models)
+[![JSR Score](https://jsr.io/badges/@codr/models/score)](https://jsr.io/@codr/models)
+[![CodeQL](https://github.com/CodrJS/models/actions/workflows/codeql.yml/badge.svg)](https://github.com/CodrJS/models/actions/workflows/codeql.yml)
 
 ## Purpose
 
-Codr has the `@codr` namespace for the JavaScript Resistry (jsr). Modules
-published to JSR should by compatible for at least Node and Deno.
+This module is for defining all reusable models for Codr.
 
 ## Getting Started
 
-Click "Use this template" in Github, then "Create a new repository."
+In order to use the `@jsr` scope in npm, the `.npmrc` file needs to be updated
+with the following:
+
+```ini
+@jsr:registry=https://npm.jsr.io
+```
+
+Installing via `npm`
+
+```bash
+npx jsr add @codr/models@^1
+# or
+npm install @jsr/codr___models@^1
+```
+
+Installing via `yarn`
+
+```bash
+yarn dlx jsr add @codr/models@^1
+# or
+yarn add @jsr/codr___models@^1
+```
+
+Installing via `deno`
+
+```bash
+deno add @codr/models@^1
+```
+
+```ts
+/* or import directly */
+import { User } from "jsr:@codr/models@^1";
+```
 
 ## Contributing
 
-```shell
+```bash
 # Clone the repo
-git clone git@github.com:CodrJS/ts-jsr-template.git
+git clone git@github.com:CodrJS/models.git
 
 # Cache deno dependencies
 deno cache
 
-# Lint, format, and test the code
-deno lint
+# Format, lint, and test the code
 deno fmt
+deno lint
 deno test
 ```
