@@ -1,3 +1,4 @@
+import type { AtLeast } from "../types/mod.ts";
 import { Base, type IBase } from "./Base.ts";
 
 interface OrganizationFlags {
@@ -34,7 +35,7 @@ export class Organization extends Base<"Organization"> {
     name,
     slug,
     domains,
-  }: IOrganization) {
+  }: AtLeast<IOrganization, "createdBy" | "domains" | "name" | "slug">) {
     super({
       _id,
       __v,

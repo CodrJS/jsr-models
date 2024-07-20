@@ -1,4 +1,4 @@
-import type { ObjectId } from "npm:mongodb";
+import type { ObjectId } from "npm:bson";
 import type { IBase } from "./Base.ts";
 import type { ActionCode, ResourceCode } from "../types/mod.ts";
 

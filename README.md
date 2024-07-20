@@ -52,7 +52,7 @@ import { User } from "jsr:@codr/models@^1";
 git clone git@github.com:CodrJS/models.git
 
 # Cache deno dependencies
-deno cache
+deno cache ./mod.ts 
 
 # Format, lint, and test the code
 deno fmt

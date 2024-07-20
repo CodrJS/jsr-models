@@ -1,4 +1,4 @@
-import type { ObjectId } from "npm:mongodb";
+import type { ObjectId } from "npm:bson";
 import { Base, type IBase } from "./Base.ts";
 import type { User } from "./User.ts";
 import type { AtLeast } from "../types/mod.ts";
