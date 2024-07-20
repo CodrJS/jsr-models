@@ -1,6 +1,6 @@
-import { assert, assertEquals } from "jsr:@std/assert";
+import { assert, assertEquals } from "@std/assert";
 import { Organization } from "../mod.ts";
-import { ObjectId } from "npm:bson";
+import { ObjectId } from "bson";
 
 Deno.test("Create organziation", function createOrganization() {
   const createdBy: ObjectId = new ObjectId();

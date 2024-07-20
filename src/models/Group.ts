@@ -1,4 +1,4 @@
-import type { ObjectId } from "npm:bson";
+import type { ObjectId } from "bson";
 import { Base, type IBase } from "./Base.ts";
 import type { AtLeast, Flags } from "../types/mod.ts";
 

@@ -1,4 +1,4 @@
-import type { ObjectId } from "npm:bson";
+import type { ObjectId } from "bson";
 import type { IBase } from "./Base.ts";
 import type { ActionCode, ResourceCode } from "../types/mod.ts";
 

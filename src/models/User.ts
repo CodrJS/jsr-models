@@ -1,6 +1,6 @@
 import { Base, type IBase } from "./Base.ts";
 import type { AtLeast, UserEnum } from "../types/mod.ts";
-import type { ObjectId } from "npm:bson";
+import type { ObjectId } from "bson";
 
 export interface IUser extends IBase<"User"> {
   organizationId: ObjectId;

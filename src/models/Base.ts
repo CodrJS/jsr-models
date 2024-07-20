@@ -1,4 +1,4 @@
-import { ObjectId } from "npm:bson";
+import { ObjectId } from "bson";
 import type { AtLeast } from "../types/mod.ts";
 
 export interface IBase<Kind extends string> {

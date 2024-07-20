@@ -1,4 +1,4 @@
-import type { JwtPayload as JsonWebTokenPayload } from "npm:jsonwebtoken";
+import type { JwtPayload as JsonWebTokenPayload } from "jsonwebtoken";
 import type { IUser } from "../models/User.ts";
 
 interface DefinfedJwtPayload extends JsonWebTokenPayload {
