@@ -6,7 +6,7 @@ Deno.test("Create organziation", function createOrganization() {
   const createdBy: ObjectId = new ObjectId();
   const org = new Organization({
     domains: ["localhost:3000"],
-    name: "Demo Account",
+    name: "Demo Organization",
     flags: {
       isActive: true,
       isDeleted: false,
@@ -16,7 +16,7 @@ Deno.test("Create organziation", function createOrganization() {
     createdBy,
   });
 
-  assertEquals(org.toJSON().name, "Demo Account");
+  assertEquals(org.toJSON().name, "Demo Organization");
   assertEquals(org.toJSON().slug, "demo");
   assertEquals(org.toJSON().createdBy.toString(), createdBy.toString());
   assertEquals(org.toJSON().flags.isActive, true);
