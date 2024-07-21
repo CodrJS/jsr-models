@@ -21,13 +21,13 @@ export class Message extends Base<"Message"> {
     body,
     to,
     _id,
-    __v,
+    _version,
     createdAt,
     updatedAt,
     createdBy,
     updatedBy,
   }: AtLeast<IMessage, "createdBy" | "body" | "subject" | "to" | "type">) {
-    super({ _id, __v, createdAt, updatedAt, createdBy, updatedBy });
+    super({ _id, _version, createdAt, updatedAt, createdBy, updatedBy });
     this.body = body;
     this.subject = subject;
     this.to = to;

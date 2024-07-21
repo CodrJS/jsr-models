@@ -18,7 +18,7 @@ export class UserGroup extends Group<"UserGroup", UserGroupFlags> {
       isPrivate: false,
     },
     _id,
-    __v,
+    _version,
     createdAt,
     updatedAt,
     createdBy,
@@ -28,7 +28,7 @@ export class UserGroup extends Group<"UserGroup", UserGroupFlags> {
   }: IUserGroup) {
     super({
       _id,
-      __v,
+      _version,
       createdAt,
       updatedAt,
       createdBy,

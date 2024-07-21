@@ -21,13 +21,13 @@ export class Authorization extends Base<"Authorization"> {
     userId,
     roleId = [],
     _id,
-    __v,
+    _version,
     createdAt,
     updatedAt,
     createdBy,
     updatedBy,
   }: AtLeast<IAuthorization, "createdBy" | "userId">) {
-    super({ _id, __v, createdAt, updatedAt, createdBy, updatedBy });
+    super({ _id, _version, createdAt, updatedAt, createdBy, updatedBy });
     this.userId = userId;
     this.roleId = roleId;
   }

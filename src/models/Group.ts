@@ -34,13 +34,13 @@ export class Group<
     members,
     flags,
     _id,
-    __v,
+    _version,
     createdAt,
     updatedAt,
     createdBy,
     updatedBy,
   }: AtLeast<IGroup<K, F>, "createdBy" | "name" | "members" | "flags">) {
-    super({ _id, __v, createdAt, updatedAt, createdBy, updatedBy });
+    super({ _id, _version, createdAt, updatedAt, createdBy, updatedBy });
     this.name = name;
     this.members = members;
     this.flags = flags;

@@ -24,7 +24,7 @@ export class Annotation extends Base<"Annotation"> {
     value,
     annotatedBy,
     _id,
-    __v,
+    _version,
     createdAt,
     updatedAt,
     createdBy,
@@ -38,7 +38,7 @@ export class Annotation extends Base<"Annotation"> {
     | "sampleId"
     | "value"
   >) {
-    super({ _id, __v, createdAt, updatedAt, createdBy, updatedBy });
+    super({ _id, _version, createdAt, updatedAt, createdBy, updatedBy });
     this.projectId = projectId;
     this.datasetId = datasetId;
     this.value = value;

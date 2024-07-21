@@ -49,7 +49,7 @@ import { User } from "jsr:@codr/models@^1";
 
 ```bash
 # Clone the repo
-git clone git@github.com:CodrJS/models.git
+git clone git@github.com:CodrJS/jsr-models.git
 
 # Cache deno dependencies
 deno cache ./mod.ts 

@@ -10,7 +10,7 @@
     "singleQuote": false
   },
   "publish": {
-    "exclude": [".github/*", "tests/*.test.ts", ".gitignore"]
+    "exclude": [".github/*", "tests/*.test.ts", ".gitignore", "coverage/*"]
   },
   "imports": {
     "@std/assert": "jsr:@std/assert@^1.0.0",

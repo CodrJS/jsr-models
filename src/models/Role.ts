@@ -33,7 +33,7 @@ export class Role extends Base<"Role"> {
     description,
     grants,
     _id,
-    __v,
+    _version,
     createdAt,
     updatedAt,
     createdBy,
@@ -42,7 +42,7 @@ export class Role extends Base<"Role"> {
     IRole & { user: User },
     "createdBy" | "name" | "code" | "description" | "grants"
   >) {
-    super({ _id, __v, createdAt, updatedAt, createdBy, updatedBy });
+    super({ _id, _version, createdAt, updatedAt, createdBy, updatedBy });
     this.name = name;
     this.code = code;
     this.description = description;

@@ -17,7 +17,7 @@ export class Dataset extends Base<"Dataset"> {
     flags,
     projectId,
     _id,
-    __v,
+    _version,
     createdAt,
     updatedAt,
     name,
@@ -26,7 +26,7 @@ export class Dataset extends Base<"Dataset"> {
   }: AtLeast<IDataset, "createdBy" | "name" | "flags" | "projectId">) {
     super({
       _id,
-      __v,
+      _version,
       createdAt,
       updatedAt,
       createdBy,

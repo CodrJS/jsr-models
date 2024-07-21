@@ -34,7 +34,7 @@ export class Project extends Base<"Project"> {
     name,
     type,
     _id,
-    __v,
+    _version,
     createdAt,
     updatedAt,
     createdBy,
@@ -43,7 +43,7 @@ export class Project extends Base<"Project"> {
     IProject,
     "createdBy" | "bgColorClass" | "config" | "flags" | "slug" | "name" | "type"
   >) {
-    super({ _id, __v, createdAt, updatedAt, createdBy, updatedBy });
+    super({ _id, _version, createdAt, updatedAt, createdBy, updatedBy });
 
     this.bgColorClass = bgColorClass;
     this.config = config;

@@ -47,7 +47,7 @@ export class Organization extends Base<"Organization"> {
       isDemo: false,
     },
     _id,
-    __v,
+    _version,
     createdAt,
     updatedAt,
     createdBy,
@@ -58,7 +58,7 @@ export class Organization extends Base<"Organization"> {
   }: AtLeast<IOrganization, "createdBy" | "domains" | "name" | "slug">) {
     super({
       _id,
-      __v,
+      _version,
       createdAt,
       updatedAt,
       createdBy,

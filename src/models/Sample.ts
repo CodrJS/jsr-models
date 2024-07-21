@@ -18,13 +18,13 @@ export class Sample extends Base<"Smaple"> {
     datasetId,
     payload,
     _id,
-    __v,
+    _version,
     createdAt,
     updatedAt,
     createdBy,
     updatedBy,
   }: AtLeast<ISample, "createdBy" | "datasetId" | "projectId" | "payload">) {
-    super({ _id, __v, createdAt, updatedAt, createdBy, updatedBy });
+    super({ _id, _version, createdAt, updatedAt, createdBy, updatedBy });
     this.projectId = projectId;
     this.datasetId = datasetId;
     this.payload = payload;
