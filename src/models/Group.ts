@@ -18,7 +18,9 @@ export interface GroupParameters<
  * Parameters for adding Group members to the {@link GroupParameters}.
  */
 export interface GroupMemberParameters {
+  /** Group member type from {@link GroupMemberType} */
   type: GroupMemberType;
+  /** Either a User or Group ObjectId */
   _id: ObjectId;
 }
 

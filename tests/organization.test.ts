@@ -2,7 +2,7 @@ import { assert, assertEquals } from "@std/assert";
 import { Organization } from "../mod.ts";
 import { ObjectId } from "bson";
 
-Deno.test("Create organziation", function createOrganization() {
+Deno.test("Create Organziation", function createOrganization() {
   const createdBy: ObjectId = new ObjectId();
   const org = new Organization({
     domains: ["localhost:3000"],

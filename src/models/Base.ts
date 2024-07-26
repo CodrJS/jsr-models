@@ -25,9 +25,9 @@ export class Base<K extends string> {
   readonly _version: BaseParameters<K>["_version"];
   readonly _id: BaseParameters<K>["_id"];
   readonly createdAt: BaseParameters<K>["createdAt"];
-  readonly updatedAt: BaseParameters<K>["updatedAt"];
+  updatedAt: BaseParameters<K>["updatedAt"];
   readonly createdBy: BaseParameters<K>["createdBy"];
-  readonly updatedBy: BaseParameters<K>["updatedBy"];
+  updatedBy: BaseParameters<K>["updatedBy"];
 
   constructor({
     createdAt,
