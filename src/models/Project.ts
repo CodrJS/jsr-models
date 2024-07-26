@@ -1,8 +1,8 @@
 import type { ObjectId } from "bson";
 import type { AtLeast, Flags, TaskType } from "../types/mod.ts";
-import { Base, type IBase } from "./Base.ts";
+import { Base, type BaseParameters } from "./Base.ts";
 
-export interface IProject extends IBase<"Project"> {
+export interface ProjectParameters extends BaseParameters<"Project"> {
   name: string;
   type: TaskType;
   slug: string;
@@ -40,7 +40,7 @@ export class Project extends Base<"Project"> {
     createdBy,
     updatedBy,
   }: AtLeast<
-    IProject,
+    ProjectParameters,
     "createdBy" | "bgColorClass" | "config" | "flags" | "slug" | "name" | "type"
   >) {
     super({ _id, _version, createdAt, updatedAt, createdBy, updatedBy });
@@ -54,7 +54,7 @@ export class Project extends Base<"Project"> {
     this.type = type;
   }
 
-  toJSON(): Omit<IProject, "kind"> {
+  toJSON(): Omit<ProjectParameters, "kind"> {
     const json = super.toJSON();
     return {
       ...json,

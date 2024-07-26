@@ -1,8 +1,8 @@
 import type { ObjectId } from "bson";
 import type { AtLeast, Flags } from "../types/mod.ts";
-import { Base, type IBase } from "./Base.ts";
+import { Base, type BaseParameters } from "./Base.ts";
 
-export interface IDataset extends IBase<"Dataset"> {
+export interface DatasetParameters extends BaseParameters<"Dataset"> {
   projectId: ObjectId;
   flags: Flags;
   name: string;
@@ -23,7 +23,7 @@ export class Dataset extends Base<"Dataset"> {
     name,
     createdBy,
     updatedBy,
-  }: AtLeast<IDataset, "createdBy" | "name" | "flags" | "projectId">) {
+  }: AtLeast<DatasetParameters, "createdBy" | "name" | "flags" | "projectId">) {
     super({
       _id,
       _version,
@@ -37,7 +37,7 @@ export class Dataset extends Base<"Dataset"> {
     this.name = name;
   }
 
-  toJSON(): Omit<IDataset, "kind"> {
+  toJSON(): Omit<DatasetParameters, "kind"> {
     const json = super.toJSON();
     return {
       ...json,

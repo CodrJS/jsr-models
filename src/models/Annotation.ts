@@ -1,8 +1,8 @@
 import type { ObjectId } from "bson";
-import { Base, type IBase } from "./Base.ts";
+import { Base, type BaseParameters } from "./Base.ts";
 import type { AtLeast } from "../types/mod.ts";
 
-export interface IAnnotation extends IBase<"Annotation"> {
+export interface AnnotationParameters extends BaseParameters<"Annotation"> {
   projectId: ObjectId;
   datasetId: ObjectId;
   sampleId: ObjectId;
@@ -30,7 +30,7 @@ export class Annotation extends Base<"Annotation"> {
     createdBy,
     updatedBy,
   }: AtLeast<
-    IAnnotation,
+    AnnotationParameters,
     | "createdBy"
     | "projectId"
     | "datasetId"
@@ -46,7 +46,7 @@ export class Annotation extends Base<"Annotation"> {
     this.annotatedBy = annotatedBy;
   }
 
-  toJSON(): Omit<IAnnotation, "kind"> {
+  toJSON(): Omit<AnnotationParameters, "kind"> {
     const json = super.toJSON();
     return {
       ...json,

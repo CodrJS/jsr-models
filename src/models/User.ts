@@ -1,27 +1,31 @@
-import { Base, type IBase } from "./Base.ts";
+import { Base, type BaseParameters } from "./Base.ts";
 import type { AtLeast, UserTypeCode } from "../types/mod.ts";
 import type { ObjectId } from "bson";
 
 /**
- * User entity parameters for creating a {@link User} entity.
+ * Parameters for creating a {@link User} entity.
  */
-export interface IUser extends IBase<"User"> {
+export interface UserParameters extends BaseParameters<"User"> {
   /** Identifier from identitity provider. */
-  identityId: string;
+  readonly identityId: string;
   /** The organization id the user belongs to. */
-  organizationId: ObjectId;
+  readonly organizationId: ObjectId;
   /** Type of user from {@link UserTypeCode} */
   type: UserTypeCode;
-  /** Email address used to signin, used for notification purposes only.*/
+  /** Email address used for signin and notification purposes only. */
   email: string;
+  /** Optional phone number. */
+  phone?: string;
+  /** A list of {@link Role}s the user is assigned. */
+  roles: ObjectId[];
   /** User flags */
   flags: {
+    /** Is the user account active or disabled */
+    isActive: boolean;
     /** Is the user anonymous (primarily used for annotator accounts) */
     isAnonymous: boolean;
     /** Is the user soft deleted */
     isDeleted: boolean;
-    /** Is the user account active or disabled */
-    isActive: boolean;
   };
 }
 
@@ -29,11 +33,12 @@ export interface IUser extends IBase<"User"> {
  * User entity class for representing a user account.
  */
 export class User extends Base<"User"> {
-  identityId: IUser["identityId"];
-  organizationId: IUser["organizationId"];
-  type: IUser["type"];
-  email: IUser["email"];
-  flags: IUser["flags"];
+  readonly identityId: UserParameters["identityId"];
+  readonly organizationId: UserParameters["organizationId"];
+  type: UserParameters["type"];
+  email: UserParameters["email"];
+  flags: UserParameters["flags"];
+  roles: UserParameters["roles"];
 
   constructor({
     identityId,
@@ -41,6 +46,7 @@ export class User extends Base<"User"> {
     type,
     email,
     flags = { isActive: false, isAnonymous: false, isDeleted: false },
+    roles,
     _id,
     _version,
     createdAt,
@@ -48,8 +54,14 @@ export class User extends Base<"User"> {
     createdBy,
     updatedBy,
   }: AtLeast<
-    IUser,
-    "createdBy" | "type" | "email" | "flags" | "organizationId" | "identityId"
+    UserParameters,
+    | "createdBy"
+    | "type"
+    | "email"
+    | "flags"
+    | "organizationId"
+    | "identityId"
+    | "roles"
   >) {
     super({ _id, _version, createdAt, updatedAt, createdBy, updatedBy });
     this.type = type;
@@ -57,18 +69,20 @@ export class User extends Base<"User"> {
     this.flags = flags;
     this.organizationId = organizationId;
     this.identityId = identityId;
+    this.roles = roles;
   }
 
   /**
    * Transforms the user class object into a json object. Useful for saving the entity to the database.
    * @returns a json representation of the user account.
    */
-  toJSON(): Omit<IUser, "kind"> {
+  toJSON(): Omit<UserParameters, "kind"> {
     const json = super.toJSON();
     return {
       identityId: this.identityId,
       organizationId: this.organizationId,
       type: this.type,
+      roles: this.roles,
       email: this.email,
       flags: this.flags,
       ...json,

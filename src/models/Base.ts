@@ -4,7 +4,7 @@ import type { AtLeast } from "../types/mod.ts";
 /**
  * Base entity parameters for all database entities.
  */
-export interface IBase<Kind extends string> {
+export interface BaseParameters<Kind extends string> {
   /** Typescript annotation for permissioning/authorization purposes. */
   readonly kind: Kind;
   /** Entity version stored in the database. */
@@ -22,12 +22,12 @@ export interface IBase<Kind extends string> {
 }
 
 export class Base<K extends string> {
-  readonly _version: IBase<K>["_version"];
-  readonly _id: IBase<K>["_id"];
-  readonly createdAt: IBase<K>["createdAt"];
-  readonly updatedAt: IBase<K>["updatedAt"];
-  readonly createdBy: IBase<K>["createdBy"];
-  readonly updatedBy: IBase<K>["updatedBy"];
+  readonly _version: BaseParameters<K>["_version"];
+  readonly _id: BaseParameters<K>["_id"];
+  readonly createdAt: BaseParameters<K>["createdAt"];
+  readonly updatedAt: BaseParameters<K>["updatedAt"];
+  readonly createdBy: BaseParameters<K>["createdBy"];
+  readonly updatedBy: BaseParameters<K>["updatedBy"];
 
   constructor({
     createdAt,
@@ -36,7 +36,7 @@ export class Base<K extends string> {
     updatedBy,
     _id,
     _version = 0,
-  }: AtLeast<IBase<K>, "createdBy">) {
+  }: AtLeast<BaseParameters<K>, "createdBy">) {
     this._version = _version;
     this._id = _id || new ObjectId();
 
@@ -52,7 +52,7 @@ export class Base<K extends string> {
    * Transforms the base class object into a json object. Useful for saving the entity to the database.
    * @returns a json representation of the base entity.
    */
-  toJSON(): Omit<IBase<K>, "kind"> {
+  toJSON(): Omit<BaseParameters<K>, "kind"> {
     return {
       _version: this._version,
       _id: this._id,

@@ -1,8 +1,8 @@
 import type { ObjectId } from "bson";
 import type { AtLeast, MessageType } from "../types/mod.ts";
-import { Base, type IBase } from "./Base.ts";
+import { Base, type BaseParameters } from "./Base.ts";
 
-export interface IMessage extends IBase<"Message"> {
+export interface MessageParameters extends BaseParameters<"Message"> {
   type: MessageType;
   subject: string;
   body: string;
@@ -26,7 +26,10 @@ export class Message extends Base<"Message"> {
     updatedAt,
     createdBy,
     updatedBy,
-  }: AtLeast<IMessage, "createdBy" | "body" | "subject" | "to" | "type">) {
+  }: AtLeast<
+    MessageParameters,
+    "createdBy" | "body" | "subject" | "to" | "type"
+  >) {
     super({ _id, _version, createdAt, updatedAt, createdBy, updatedBy });
     this.body = body;
     this.subject = subject;
@@ -34,7 +37,7 @@ export class Message extends Base<"Message"> {
     this.type = type;
   }
 
-  toJSON(): Omit<IMessage, "kind"> {
+  toJSON(): Omit<MessageParameters, "kind"> {
     const json = super.toJSON();
     return {
       ...json,

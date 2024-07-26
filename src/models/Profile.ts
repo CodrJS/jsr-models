@@ -1,30 +1,30 @@
 import type { ObjectId } from "bson";
-import { Base, type IBase } from "./Base.ts";
+import { Base, type BaseParameters } from "./Base.ts";
 import type { User } from "./User.ts";
 import type { AtLeast } from "../types/mod.ts";
 
-export interface IProfile extends IBase<"Profile"> {
+export interface ProfileParameters extends BaseParameters<"Profile"> {
+  /** Name of the user. */
   name: {
+    /** First, or preferred name. */
     first: string;
+    /** Last name. */
     last: string;
-    preferred?: string;
   };
-  phone?: string;
+  /** Optional avatar. */
   avatarUrl?: string;
+  /** Username, unique within an organization. */
   username: string;
+  /** Id of the user. */
   userId: ObjectId;
 }
 
 export class Profile extends Base<"Profile"> {
-  name: {
-    first: string;
-    last: string;
-    preferred?: string;
-  };
-  phone?: string;
-  avatarUrl?: string;
-  username: string;
-  userId: ObjectId;
+  name: ProfileParameters["name"];
+  avatarUrl?: ProfileParameters["avatarUrl"];
+  username: ProfileParameters["username"];
+  userId: ProfileParameters["userId"];
+  /** User entity linked to the profile. */
   user?: User;
 
   constructor({
@@ -32,7 +32,6 @@ export class Profile extends Base<"Profile"> {
     avatarUrl,
     username,
     userId,
-    phone,
     _id,
     _version,
     user,
@@ -41,25 +40,26 @@ export class Profile extends Base<"Profile"> {
     createdBy,
     updatedBy,
   }: AtLeast<
-    IProfile & { user: User },
+    ProfileParameters & { user: User },
     "createdBy" | "name" | "userId" | "username"
   >) {
     super({ _id, _version, createdAt, updatedAt, createdBy, updatedBy });
     this.name = name;
     this.avatarUrl = avatarUrl;
     this.userId = userId;
-    this.phone = phone;
     this.username = username;
     this.user = user;
   }
 
-  toJSON(): Omit<IProfile, "kind"> {
+  /**
+   * Profile entity class for representing a user profile.
+   */
+  toJSON(): Omit<ProfileParameters, "kind"> {
     const json = super.toJSON();
     return {
       name: this.name,
       avatarUrl: this.avatarUrl,
       userId: this.userId,
-      phone: this.phone,
       username: this.username,
       ...json,
     };

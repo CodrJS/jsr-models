@@ -1,5 +1,5 @@
 import type { Flags } from "../types/mod.ts";
-import { Group, type IGroup } from "./Group.ts";
+import { Group, type GroupParameters } from "./Group.ts";
 
 interface UserGroupFlags extends Flags {
   // anonymize the data?
@@ -7,7 +7,7 @@ interface UserGroupFlags extends Flags {
   // others can join?
   isJoinable: boolean;
 }
-export type IUserGroup = IGroup<"UserGroup", UserGroupFlags>;
+export type UserGroupParameters = GroupParameters<"UserGroup", UserGroupFlags>;
 
 export class UserGroup extends Group<"UserGroup", UserGroupFlags> {
   constructor({
@@ -25,7 +25,7 @@ export class UserGroup extends Group<"UserGroup", UserGroupFlags> {
     updatedBy,
     name,
     members,
-  }: IUserGroup) {
+  }: UserGroupParameters) {
     super({
       _id,
       _version,
@@ -39,7 +39,7 @@ export class UserGroup extends Group<"UserGroup", UserGroupFlags> {
     });
   }
 
-  toJSON(): Omit<IUserGroup, "kind"> {
+  toJSON(): Omit<UserGroupParameters, "kind"> {
     const json = super.toJSON();
     return {
       ...json,

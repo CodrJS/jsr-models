@@ -1,10 +1,34 @@
 import type { JwtPayload as JsonWebTokenPayload } from "jsonwebtoken";
-import type { IUser } from "../models/User.ts";
+import type { PermissionParameters, UserParameters } from "../mod.ts";
 
-interface DefinfedJwtPayload extends JsonWebTokenPayload {
-  iss: string;
-  sub: string;
-  jti: string;
+export interface JwtParameters {
+  /** Type of user from {@link UserTypeCode}. */
+  type: UserParameters["type"];
+  /** A consolidated set of permission codes the user has accross all roles. */
+  permissions: PermissionParameters["code"][];
 }
 
-export type JwtPayload = DefinfedJwtPayload & IUser;
+export interface JwtPayload extends JsonWebTokenPayload, JwtParameters {
+  /**
+   * The issuer of the token.
+   * @default `https://api.codrcloud.com`
+   */
+  iss: string;
+  /**
+   * The user's stringified object id.
+   * @example ```User._id.toString();```
+   */
+  sub: string;
+  /**
+   * JWT identifier, this should be a stringified ObjectId.
+   * @example ```new ObjectId().toString();```
+   */
+  jti: string;
+  /**
+   * JWT Audience(s). This limits what domains the JWT can be used for.
+   * @example ```
+   * [ "https://api.codrcloud.com/user", "https://api.codrcloud.com/project" ]
+   * ```
+   */
+  aud: string[];
+}

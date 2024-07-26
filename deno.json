@@ -1,13 +1,14 @@
 {
   "name": "@codr/models",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "exports": "./mod.ts",
   "fmt": {
     "lineWidth": 80,
     "indentWidth": 2,
     "useTabs": false,
     "semiColons": true,
-    "singleQuote": false
+    "singleQuote": false,
+    "proseWrap": "always"
   },
   "publish": {
     "exclude": [".github/*", "tests/*.test.ts", ".gitignore", "coverage/*"]

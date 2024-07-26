@@ -1,8 +1,8 @@
 import type { ObjectId } from "bson";
-import { Base, type IBase } from "./Base.ts";
+import { Base, type BaseParameters } from "./Base.ts";
 import type { AtLeast } from "../types/mod.ts";
 
-export interface ISample extends IBase<"Sample"> {
+export interface SampleParameters extends BaseParameters<"Sample"> {
   projectId: ObjectId;
   datasetId: ObjectId;
   payload: object;
@@ -23,14 +23,17 @@ export class Sample extends Base<"Smaple"> {
     updatedAt,
     createdBy,
     updatedBy,
-  }: AtLeast<ISample, "createdBy" | "datasetId" | "projectId" | "payload">) {
+  }: AtLeast<
+    SampleParameters,
+    "createdBy" | "datasetId" | "projectId" | "payload"
+  >) {
     super({ _id, _version, createdAt, updatedAt, createdBy, updatedBy });
     this.projectId = projectId;
     this.datasetId = datasetId;
     this.payload = payload;
   }
 
-  toJSON(): Omit<ISample, "kind"> {
+  toJSON(): Omit<SampleParameters, "kind"> {
     const json = super.toJSON();
     return {
       ...json,

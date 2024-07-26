@@ -1,8 +1,9 @@
 import type { ObjectId } from "bson";
-import type { IBase } from "./Base.ts";
+import type { BaseParameters } from "./Base.ts";
 import type { ActionCode, ResourceCode } from "../types/mod.ts";
 
-export interface IAudit<T> extends Omit<IBase<"Audit">, "createdBy"> {
+export interface AuditParameters<T>
+  extends Omit<BaseParameters<"Audit">, "createdBy"> {
   type: ResourceCode; // Where: what system processed this event.
   action: ActionCode; // How:   what action was taken.
   userId: ObjectId; // Who:   which user made the change.
