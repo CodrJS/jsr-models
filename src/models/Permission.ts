@@ -6,6 +6,7 @@ import type { AtLeast } from "../types/mod.ts";
  * Parameters for creating a {@link Permission} entity.
  */
 export interface PermissionParameters extends BaseParameters<"Permission"> {
+  /** The title/name of the role. */
   title: string;
   /**
    * Permission code.

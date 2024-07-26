@@ -1,5 +1,5 @@
 import { assert, assertEquals } from "@std/assert";
-import { User, UserTypeCode } from "../mod.ts";
+import { User, UserType } from "../mod.ts";
 import { ObjectId } from "bson";
 
 Deno.test("Create User", function createUser() {
@@ -9,7 +9,7 @@ Deno.test("Create User", function createUser() {
   const user = new User({
     organizationId: orgId,
     identityId: "identity_id",
-    type: UserTypeCode.Member,
+    type: UserType.Member,
     email: "demo@codr.sh",
     roles: [roleId],
     flags: {

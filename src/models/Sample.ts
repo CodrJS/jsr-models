@@ -3,18 +3,24 @@ import { Base, type BaseParameters } from "./Base.ts";
 import type { AtLeast } from "../types/mod.ts";
 
 export interface SampleParameters extends BaseParameters<"Sample"> {
-  projectId: ObjectId;
+  /** Dataset this sample is a part of */
   datasetId: ObjectId;
+  /** What sub-dataset/partition this sample belongs to. */
+  subDatasetId: ObjectId;
+  /** The payload of the sample. */
   payload: object;
 }
 
+/**
+ * Parameters for creating a {@link Sample} entity.
+ */
 export class Sample extends Base<"Smaple"> {
-  projectId: ObjectId;
-  datasetId: ObjectId;
-  payload: object;
+  datasetId: SampleParameters["datasetId"];
+  subDatasetId: SampleParameters["subDatasetId"];
+  payload: SampleParameters["payload"];
 
   constructor({
-    projectId,
+    subDatasetId,
     datasetId,
     payload,
     _id,
@@ -25,20 +31,25 @@ export class Sample extends Base<"Smaple"> {
     updatedBy,
   }: AtLeast<
     SampleParameters,
-    "createdBy" | "datasetId" | "projectId" | "payload"
+    "createdBy" | "datasetId" | "subDatasetId" | "payload"
   >) {
     super({ _id, _version, createdAt, updatedAt, createdBy, updatedBy });
-    this.projectId = projectId;
     this.datasetId = datasetId;
+    this.subDatasetId = subDatasetId;
     this.payload = payload;
   }
 
+  /**
+   * Transforms the {@link Sample} class object into a {@link SampleParameters}-like
+   * json object. Useful for saving the entity to the database.
+   * @returns a json representation of a dataset sample entity.
+   */
   toJSON(): Omit<SampleParameters, "kind"> {
     const json = super.toJSON();
     return {
       ...json,
-      projectId: this.projectId,
       datasetId: this.datasetId,
+      subDatasetId: this.subDatasetId,
       payload: this.payload,
     };
   }

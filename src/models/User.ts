@@ -1,6 +1,18 @@
 import { Base, type BaseParameters } from "./Base.ts";
-import type { AtLeast, UserTypeCode } from "../types/mod.ts";
+import type { AtLeast } from "../types/mod.ts";
 import type { ObjectId } from "bson";
+
+/** Tpye of User */
+export enum UserType {
+  /** Anonymous users should only be used for external Annotators. */
+  Anonymous = "ANONYMOUS",
+  /** Internal members to the organization. */
+  Member = "MEMBER",
+  /** External collaborators invited to the organization. */
+  Partner = "PARTNER",
+  /** Codr System users. */
+  System = "SYSTEM",
+}
 
 /**
  * Parameters for creating a {@link User} entity.
@@ -10,8 +22,8 @@ export interface UserParameters extends BaseParameters<"User"> {
   readonly identityId: string;
   /** The organization id the user belongs to. */
   readonly organizationId: ObjectId;
-  /** Type of user from {@link UserTypeCode} */
-  type: UserTypeCode;
+  /** Type of user from {@link UserType} */
+  type: UserType;
   /** Email address used for signin and notification purposes only. */
   email: string;
   /** Optional phone number. */
@@ -73,8 +85,9 @@ export class User extends Base<"User"> {
   }
 
   /**
-   * Transforms the user class object into a json object. Useful for saving the entity to the database.
-   * @returns a json representation of the user account.
+   * Transforms the {@link User} class object into a {@link UserParameters}-like
+   * json object. Useful for saving the entity to the database.
+   * @returns a json representation of the user entity.
    */
   toJSON(): Omit<UserParameters, "kind"> {
     const json = super.toJSON();
